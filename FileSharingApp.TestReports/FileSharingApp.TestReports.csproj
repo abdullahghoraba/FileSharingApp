@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>
+		net5.0
+	</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FileSharingApp.Models\FileSharingApp.Models.csproj" />
+  </ItemGroup>
+
+</Project>

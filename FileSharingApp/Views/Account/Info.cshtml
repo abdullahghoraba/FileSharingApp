@@ -1,0 +1,81 @@
+﻿@model FileSharingApp.Models.UserViewModel
+@inject IViewLocalizer localizer
+@{
+    ViewData["Title"] = "Info";
+}
+
+@if (!ViewContext.ModelState.IsValid)
+{
+    <div asp-validation-summary="ModelOnly" class="text-danger alert alert-danger text-center"></div>
+}
+<section id="mu-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mu-contact-area" style="padding-top:0;">
+                    <!-- Title -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mu-title">
+                                <h1>@localizer["infoTitle"]</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Contact Content -->
+                    <div class="mu-contact-content">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="mu-contact-form-area">
+                                    <div id="form-messages"></div>
+                                    <form method="post" class="mu-contact-form" asp-action="Info" asp-controller="Account">
+
+
+                                        <div class="form-group">
+                                            <span class="fa fa-envelope mu-contact-icon"></span>
+                                            <input type="text" class="form-control" asp-for="FirstName" placeholder="@localizer["FirstName"]" required>
+                                            <span asp-validation-for="FirstName"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <span class="fa fa-envelope mu-contact-icon"></span>
+                                            <input type="text" class="form-control" asp-for="LastName" placeholder="@localizer["LastName"]" required>
+                                            <span asp-validation-for="LastName"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <span class="fa fa-envelope mu-contact-icon"></span>
+                                            <input type="email" class="form-control" asp-for="Email" placeholder="@localizer["Email"]" readonly>
+                                            <span asp-validation-for="Email"></span>
+                                        </div>
+
+                                        <button type="submit" class="mu-send-msg-btn"><span>@localizer["SaveChanges"]</span></button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- End Contact Content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*first way to create partial View*@
+@*@{await Html.RenderPartialAsync("_ChangePasswordPartial",new ChangePasswordViewModel());}*@
+
+@*second way to create partial view password by tag helpers*@
+@if (Model.HasPassword) {
+<partial name="_ChangePasswordPartial" model="new ChangePasswordViewModel()" />
+}else
+{
+<partial name="_AddPasswordPartial" model="new AddPasswordViewModel()" />
+}
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<FileSharingApp.Models.UploadViewModel>
+@{
+    ViewData["Title"] = "Results";
+}
+
+<h4>Search Results</h4>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="card mb-3 col-md-12">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        @if (item.ContentType.ToLower().StartsWith("image"))
+                        {
+                            <img height="100%" width="100%" src="/Uploads/@item.FileName" class="img-fluid rounded-start card-img" alt="...">
+                        }
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-md-5">
+                                    <h5 class="card-title">@item.OriginalName</h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="card-text"><small class="text-muted">@item.UploadDate</small></p>
+                                    @{
+                                        var size = item.Size / 1024;
+                                        if (size < 1024)
+                                        {
+                                            <span>@Math.Floor(size) Kb</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@(Math.Floor(size)/1024) Mb</span>
+                                        }
+                                    }
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="text-right">
+                                        <a asp-action="Download" asp-controller="Uploads" asp-route-id="@item.FileName" class="btn btn-outline-primary">Download</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    Downloads : <span>@item.DownloadCount</span>
+                                </div>
+                            </div>
+
+                            @*<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>*@
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="col-12 text-center">
+            <div>
+                <form method="post">
+                    @if (ViewBag.CurrentPage - 1 > 0)
+                    {
+                        <input type="submit" asp-action="Results" asp-controller="Uploads" asp-route-term="@(ViewBag.term)" asp-route-RequiredPage="@(ViewBag.CurrentPage-1)" class="btn btn-outline-primary  btn-lg align-left" value="Prev">
+                    }
+                    @if (ViewBag.CurrentPage + 1 <= ViewBag.PagesCount)
+                    {
+                        <input type="submit" asp-action="Results" asp-controller="Uploads" asp-route-term="@(ViewBag.term)" asp-route-RequiredPage="@(ViewBag.CurrentPage+1)" class="btn btn-outline-primary  btn-lg align-left" value="Next">
+                    }
+                </form>
+           
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<AdminUserViewModel>
+@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/Admin/dist/css/adminlte.min.css">
+</head>
+<body>
+    <div>
+       
+            <div class="row d-flex align-items-stretch">
+                @foreach (var item in Model)
+                {
+                    <partial name="_UserCard" model="item" />
+
+                }
+            </div>
+     
+    </div>
+</body>
+</html>

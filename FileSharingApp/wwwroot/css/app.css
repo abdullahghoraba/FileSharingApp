@@ -1,0 +1,20 @@
+﻿body {
+}
+
+.main-content {
+    padding-top: 130px;
+    font-family:cursive;
+    padding-bottom:20px;
+    min-height:500px;
+}
+
+    .main-content h1, .main-content h2 {
+        color: #0091ea;
+    }
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cairo' sans-serif;
+    color: #0091ea;
+}
+.field-validation-error{
+    color:red;
+}

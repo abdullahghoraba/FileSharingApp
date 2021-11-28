@@ -1,0 +1,70 @@
+﻿@model FileSharingApp.Models.ContactViewModel
+@{
+    ViewData["Title"] = "Contact";
+}
+@if(TempData["Message"]!=null) {
+    <div class="alert alert-success">
+        <strong>@TempData["Message"]</strong>
+    </div>
+
+}
+<!-- Start Contact -->
+<section id="mu-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mu-contact-area" style="padding-top:0;">
+                    <!-- Title -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mu-title">
+                                <h2>Contact</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Contact Content -->
+                    <div class="mu-contact-content">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="mu-contact-form-area">
+                                    <div id="form-messages"></div>
+                                    <form method="post" class="mu-contact-form">
+
+                                        <div class="form-group">
+                                            <span class="fa fa-user mu-contact-icon"></span>
+                                            <input type="text" class="form-control" asp-for="Name" placeholder="Name" id="name" name="name" required>
+                                            <span asp-validation-for="Name"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <span class="fa fa-envelope mu-contact-icon"></span>
+                                            <input type="email" class="form-control" asp-for="Email" placeholder="Enter Email" id="email" name="email" required>
+                                            <span asp-validation-for="Email"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <span class="fa fa-folder-open-o mu-contact-icon"></span>
+                                            <input type="text" class="form-control" asp-for="Subject" placeholder="Your Subject" id="subject" name="subject" required>
+                                            <span asp-validation-for="Subject"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <span class="fa fa-pencil-square-o mu-contact-icon"></span>
+                                            <textarea class="form-control" asp-for="Message" placeholder="Message" id="message" name="message" required></textarea>
+                                            <span asp-validation-for="Message"></span>
+                                        </div>
+                                        <button type="submit" class="mu-send-msg-btn"><span>Send Message</span></button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- End Contact Content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Contact -->

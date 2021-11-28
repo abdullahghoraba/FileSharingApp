@@ -1,0 +1,73 @@
+﻿@model FileSharingApp.Models.RegisterViewModel
+@inject IViewLocalizer localizer
+@{
+    ViewData["Title"] = "Register";
+}
+
+<section id="mu-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mu-contact-area" style="padding-top:0;">
+                    <!-- Title -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mu-title">
+                                <h1>@localizer["Register"]</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Contact Content -->
+                    <div class="mu-contact-content">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="mu-contact-form-area">
+                                    <div id="form-messages"></div>
+                                    <form method="post" class="mu-contact-form" asp-action="Register" asp-controller="Account" asp-route-ReturnUrl="@Context.Request.Query["ReturnUrl"]">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <span class="fa fa-envelope mu-contact-icon"></span>
+                                            <input type="email" class="form-control" asp-for="Email" placeholder="@localizer["Enter Email"]" required>
+                                            <span asp-validation-for="Email"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <span class="fa fa-envelope mu-contact-icon"></span>
+                                            <input type="text" class="form-control" asp-for="FirstName" placeholder="@localizer["FirstName"]" >
+                                            <span asp-validation-for="FirstName"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <span class="fa fa-envelope mu-contact-icon"></span>
+                                            <input type="text" class="form-control" asp-for="LastName" placeholder="@localizer["LastName"]" >
+                                            <span asp-validation-for="LastName"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <span class="fa fa-folder-open-o mu-contact-icon"></span>
+                                            <input type="password" class="form-control" asp-for="Password" placeholder="@localizer["Your Password"]" required>
+                                            <span asp-validation-for="Password"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <span class="fa fa-folder-open-o mu-contact-icon"></span>
+                                            <input type="password" class="form-control" asp-for="ComparePassword" placeholder="@localizer["Compare Password"]" required>
+                                            <span asp-validation-for="ComparePassword"></span>
+                                        </div>
+                                        <button type="submit" class="mu-send-msg-btn"><span>@localizer["Sign Up"]</span></button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- End Contact Content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

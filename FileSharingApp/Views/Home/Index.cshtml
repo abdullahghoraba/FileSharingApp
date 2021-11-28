@@ -1,0 +1,50 @@
+﻿@inject IViewLocalizer localizer
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>@localizer["Search Files"]</h1>
+    <br />
+    <div class="container">
+        <div class="row justify-content-lg-center">
+            <div class="col-md-8">
+                <form asp-controller="Uploads" asp-action="Results">
+                    <div class="input-group input-group-lg mb-3">
+                        <input type="text" class="form-control" name="Term" placeholder="@localizer["File Name"]" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-primary" type="submit" id="button-addon2">@localizer["Search"]</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-md-12 text-center" style="margin-top:40px;">
+                <h2>@localizer["Popular Downloads"]</h2>
+                <hr />
+                <table class="table">
+                    <tbody>
+                        @foreach (UploadViewModel item in ViewBag.Popular)
+                        {
+                            <tr>
+                                <td>
+
+                                    <img data-src="/Uploads/@item.FileName" width="70" height="70" class="img-thumbnail lazyload" alt="Alternate Text" />
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OriginalName)
+
+                                </td>
+                                <td>
+                                    <strong>@localizer["Downloads"] :</strong>@Html.DisplayFor(modelItem => item.DownloadCount)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
